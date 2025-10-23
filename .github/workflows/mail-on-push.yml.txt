@@ -1,0 +1,27 @@
+name: Send mail on push
+
+on:
+  push:
+
+jobs:
+  mail_on_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          secure: true
+          subject: "Push to ${{ github.repository }} by ${{ github.actor }}: ${{ github.event.head_commit.message }}"
+          body: |
+            Репозиторий: ${{ github.repository }}
+            Пользователь: ${{ github.actor }}
+            Сообщение коммита: ${{ github.event.head_commit.message }}
+          to: "твоя_почта@example.com"
+          from: "GitHub Actions <${{ secrets.MAIL_USERNAME }}>"
