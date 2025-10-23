@@ -23,5 +23,5 @@ jobs:
             Репозиторий: ${{ github.repository }}
             Пользователь: ${{ github.actor }}
             Сообщение коммита: ${{ github.event.head_commit.message }}
-          to: "твоя_почта@example.com"
+          to: "sandakovroman2@gmail.com"
           from: "GitHub Actions <${{ secrets.MAIL_USERNAME }}>"
